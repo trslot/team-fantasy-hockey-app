@@ -1,0 +1,61 @@
+html { font-size: 22px; }
+
+
+.cards {
+    max-width: 1000px;
+    margin: 1% 10%;
+    display: grid;
+    gap: 1rem;
+}
+
+.card {
+    height: 400px;
+    min-width: 325px;
+
+    mat-card {
+        align-items: center;
+    }
+
+    .jonah {
+        background-color: #1bfc06;
+    }
+
+    .isaiah {
+        background-color: blue;
+    }
+
+    .mom {
+        background-color: aquamarine;
+    }
+
+    .dad {
+        background-color: #e27602;
+    }
+}
+
+.icons {
+    width: 35px;
+    height: 35px;
+}
+
+@media (min-width: 600px) {
+    .cards {
+        grid-template-columns: repeat(1, 1fr);
+    }
+}
+
+@media (min-width: 800px) {
+    .cards {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .card {
+        width: auto;
+    }
+}
+
+@media (min-width: 1100px) {
+    .cards {
+        grid-template-columns: repeat(4, 1fr);
+    }
+}

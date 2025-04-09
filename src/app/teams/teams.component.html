@@ -1,0 +1,18 @@
+<div class="cards">
+    @for (division of ['Atlantic', 'Metropolitan', 'Central', 'Pacific']; track $index) {
+    <div class="card">
+        <mat-card appearance="outlined">
+            <mat-card-header>
+                <mat-card-title>{{division}} Division</mat-card-title>
+            </mat-card-header>
+
+            @for (team of getTeamsByDivision(division); track $index) {
+                <mat-list-item >
+                    <img class="logo" [src]="team.teamLogo" />
+                    {{team.placeName}} {{team.teamName}}
+                </mat-list-item>
+            }
+        </mat-card>
+    </div>
+    }
+</div>

@@ -1,0 +1,12 @@
+{
+    "/v1/*": {
+        "target": "https://api-web.nhle.com",
+        "secure": false,
+        "changeOrigin": true
+    },
+    "/players": {
+        "target": "http://localhost:5000",
+        "secure": false,
+        "changeOrigin": true
+      }
+}

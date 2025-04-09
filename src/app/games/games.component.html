@@ -1,0 +1,41 @@
+<div>
+    <br />
+    <h4>Games Today</h4>
+</div>
+
+<div class="cards">
+    @for (game of games; track $index) {
+        <div class="card">
+            <mat-card>
+                <mat-card-content>
+                    <div>
+                        <img class="icons" src="{{game.awayTeam}}" /> vs <img class="icons" src="{{game.homeTeam}}" />
+                    </div>
+                    <div>
+                        {{game.awayTeamAbbreviation}} - {{game.homeTeamAbbreviation}}
+                    </div>                    
+                </mat-card-content>
+                <mat-card-content>
+                    {{ game.awayScore ? game.awayScore : 0 }} - {{ game.homeScore ? game.homeScore : 0 }}
+                </mat-card-content>
+                @if (game.status === "FUT") {
+                    <mat-card-footer>
+                        {{ game.startTime }}
+                    </mat-card-footer>
+                } @else if (game.status === "PRE") {
+                    <mat-card-footer>
+                        Pregame
+                    </mat-card-footer>
+                } @else if (game.status === "LIVE" || game.status === "CRIT") {
+                    <mat-card-footer>
+                        Live - {{ game.period }}{{ game.period === 1 ? "st" : game.period === 2 ? "nd" : "rd"}}
+                    </mat-card-footer>
+                } @else if (game.status === "FINAL" || game.status === "OFF") {
+                    <mat-card-footer>
+                        Final
+                    </mat-card-footer>
+                }
+            </mat-card>
+        </div>
+    }
+</div>

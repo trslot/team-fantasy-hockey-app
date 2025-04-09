@@ -1,0 +1,44 @@
+.cards {
+    max-width: 1100px;
+    margin: 2% 5%;
+    display: grid;
+    gap: 1rem;
+}
+
+.card {
+    mat-card {
+        align-items: center;
+        padding: 10px;
+        min-width: 300px;
+        min-height: 100px;
+    }
+    
+    .logo {
+        width: 35px;
+        height: 35px;
+    }
+
+
+}
+
+@media (min-width: 600px) {
+    .cards {
+        grid-template-columns: repeat(1, 1fr);
+    }
+}
+
+@media (min-width: 800px) {
+    .cards {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .card {
+        width: 400px;
+    }
+}
+
+@media (min-width: 1100px) {
+    .cards {
+        grid-template-columns: repeat(4, 1fr);
+    }
+}

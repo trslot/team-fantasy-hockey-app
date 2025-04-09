@@ -1,0 +1,75 @@
+<div class="cards">
+    <div class="card">
+        <mat-card class="jonah" [ngStyle]="{'background-color': cardColors['jonah'] || ''}">
+            <mat-card-header>
+                <mat-card-title>
+                    Jonah - {{ jonahPoints }} points 
+                </mat-card-title>
+                
+            </mat-card-header>
+            <mat-card-content>
+                @for (j of jonah; track j.teamName) {
+                <mat-list-item> <img src="{{j.logo}}" class="icons" /> {{j.placeName}} {{j.teamName}} - {{j.points}}</mat-list-item>
+                }
+            </mat-card-content>
+            
+        </mat-card>
+        <button mat-button (click)="openColorPicker('jonah')">Change Color</button>
+    </div>
+    <div class="card">
+        <mat-card class="isaiah">
+            <mat-card-header>
+                <mat-card-title>
+                    Isaiah - {{ isaiahPoints }} points
+                </mat-card-title>
+                
+            </mat-card-header>
+            <mat-card-content>
+                @for (i of isaiah; track i.teamName) {
+                <mat-list-item><img src="{{i.logo}}" class="icons" /> {{i.placeName}} {{i.teamName}} - {{i.points}}</mat-list-item>
+                }
+            </mat-card-content>
+        </mat-card>
+        <button mat-button (click)="openColorPicker('isaiah')">Change Color</button>
+    </div>
+    <div class="card">
+        <mat-card class="dad">
+            <mat-card-header>
+                <mat-card-title>
+                    Dad - {{ dadPoints }} points
+                </mat-card-title>
+                
+            </mat-card-header>
+            <mat-card-content>
+                @for (d of dad; track d.teamName) {
+                <mat-list-item><img src="{{d.logo}}" class="icons" /> {{d.placeName}} {{d.teamName}} - {{d.points}}</mat-list-item>
+                }
+            </mat-card-content>
+        </mat-card>
+        <button mat-button (click)="openColorPicker('dad')">Change Color</button>
+    </div>
+    <div class="card">
+        <mat-card class="mom">
+            <mat-card-header>
+                <mat-card-title>
+                    Mom - {{ momPoints }} points 
+                </mat-card-title>
+                
+            </mat-card-header>
+            <mat-card-content>
+                @for (m of mom; track m.teamName) {
+                <mat-list-item><img src="{{m.logo}}" class="icons" /> {{m.placeName}} {{m.teamName}} - {{m.points}}</mat-list-item>
+                }
+            </mat-card-content>
+        </mat-card>
+        <button mat-button (click)="openColorPicker('mom')">Change Color</button>
+    </div>
+    
+  </div>
+
+  @if (sortByPlaceBool) {
+    <button mat-button (click)="sortByPlace()">Sort by points</button>
+  } @else {
+    <button mat-button (click)="sortByPlace()">Sort by team</button>
+  }
+  

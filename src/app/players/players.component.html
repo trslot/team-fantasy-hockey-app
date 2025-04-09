@@ -1,0 +1,42 @@
+<div>
+    <br />
+    <h4>Players</h4>
+</div>
+
+<div>
+    <form class="example-form">
+        <mat-form-field class="example-full-width">
+          <mat-label>Players</mat-label>
+          <input type="text" matInput [formControl]="myControl" [matAutocomplete]="auto">
+          <mat-autocomplete #auto="matAutocomplete" [displayWith]="displayFn" (optionSelected)='addPlayer($event.option.value)'>
+            @for (option of filteredOptions | async; track option) {
+              <mat-option [value]="option">{{option.name}}</mat-option>
+            }
+          </mat-autocomplete>
+        </mat-form-field>
+      </form>
+</div>
+
+<div class="cards">
+    @for (player of players; track $index) {
+        <div class="card">
+            <mat-card appearance="outlined">
+                <mat-card-header>
+                    <mat-card-title>{{player.firstName}} {{player.lastName}}</mat-card-title>
+                </mat-card-header>
+                <img mat-card-image class="image" src="{{player.imageUrl}}" alt="headshot of player">
+                <mat-card-content>
+                    Goals: {{player.goals}} 
+                </mat-card-content>
+                <mat-card-content>
+                    Assists: {{player.assists}}
+                </mat-card-content>
+                <mat-card-content>
+                    Points: {{player.points}}
+                </mat-card-content>
+                <button mat-button (click)="removePlayer(player.id)">Remove player</button>
+            </mat-card>
+        </div>
+    }
+</div>
+
