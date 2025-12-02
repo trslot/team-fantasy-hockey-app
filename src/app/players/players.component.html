@@ -25,15 +25,53 @@
                     <mat-card-title>{{player.firstName}} {{player.lastName}}</mat-card-title>
                 </mat-card-header>
                 <img mat-card-image class="image" src="{{player.imageUrl}}" alt="headshot of player">
+                <div>
+                @if (player.position !== "G") {
                 <mat-card-content>
-                    Goals: {{player.goals}} 
+                    Current Season Goals: {{player.currentSeasonGoals}}
                 </mat-card-content>
                 <mat-card-content>
-                    Assists: {{player.assists}}
+                    Current Season Assists: {{player.currentSeasonAssists}}
                 </mat-card-content>
                 <mat-card-content>
-                    Points: {{player.points}}
+                    Current Season Points: {{player.currentSeasonPoints}}
                 </mat-card-content>
+                } @else {
+                <mat-card-content>
+                    Current Season Wins: {{player.currentSeasonWins}}
+                </mat-card-content>
+                <mat-card-content>
+                    Current Season Losses: {{player.currentSeasonLosses}}
+                </mat-card-content>
+                <mat-card-content>
+                    Current Season OT Losses: {{player.currentSeasonOvertimeLosses}}
+                </mat-card-content>
+                }
+
+            </div>
+            <div>
+                @if (player.position !== "G") {
+                <mat-card-content>
+                    Career Goals: {{player.careerGoals}}
+                </mat-card-content>
+                <mat-card-content>
+                    Career Assists: {{player.careerAssists}}
+                </mat-card-content>
+                <mat-card-content>
+                    Career Points: {{player.careerPoints}}
+                </mat-card-content>
+                } @else {
+                <mat-card-content>
+                    Career Wins: {{player.careerWins}}
+                </mat-card-content>
+                <mat-card-content>
+                    Career Losses: {{player.careerLosses}}
+                </mat-card-content>
+                <mat-card-content>
+                    Career OT Losses: {{player.careerOvertimeLosses}}
+                </mat-card-content>
+                }
+            </div>
                 <button mat-button (click)="removePlayer(player.id)">Remove player</button>
             </mat-card>
         </div>

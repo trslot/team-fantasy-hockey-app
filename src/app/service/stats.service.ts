@@ -43,10 +43,40 @@ export class StatsService {
   }
 
   getRosters(teamID: string) {
-    return this.http.get(`http://localhost:5000/rosters`, { params: { teamID }}).pipe(
+    return this.http.get(`http://localhost:5000/rosters`, { params: { teamID } }).pipe(
       timeout(10000),
       catchError(err => {
         console.error('Rosters API error:', err);
+        return of(null);
+      })
+    );
+  }
+
+  getSeason() {
+    return this.http.get(`http://localhost:5000/seasons`).pipe(
+      timeout(10000),
+      catchError(err => {
+        console.error('Seasons API error:', err);
+        return of(null);
+      })
+    );
+  }
+
+  getStandingSeason() {
+    return this.http.get(`http://localhost:5000/standing-seasons`).pipe(
+      timeout(10000),
+      catchError(err => {
+        console.error('Seasons API error:', err);
+        return of(null);
+      })
+    );
+  }
+
+  getPastStats(seasonId: number) {
+    return this.http.get(`http://localhost:5000/past-stats`, { params: {seasonId} }).pipe(
+      timeout(10000),
+      catchError(err => {
+        console.error('Seasons API error:', err);
         return of(null);
       })
     );

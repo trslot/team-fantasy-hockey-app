@@ -3,4 +3,5 @@ export interface INHLTeam {
     points: number;
     logo: string;
     placeName: string;
+    record: string;
 }

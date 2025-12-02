@@ -1,0 +1,166 @@
+[debug] [2025-04-09T23:26:09.388Z] ----------------------------------------------------------------------
+[debug] [2025-04-09T23:26:09.390Z] Command:       C:\Program Files\nodejs\node.exe C:\Program Files\nodejs\node_modules\firebase-tools\lib\bin\firebase.js emulators:start
+[debug] [2025-04-09T23:26:09.391Z] CLI Version:   14.1.0
+[debug] [2025-04-09T23:26:09.391Z] Platform:      win32
+[debug] [2025-04-09T23:26:09.391Z] Node Version:  v22.9.0
+[debug] [2025-04-09T23:26:09.391Z] Time:          Wed Apr 09 2025 19:26:09 GMT-0400 (Eastern Daylight Time)
+[debug] [2025-04-09T23:26:09.391Z] ----------------------------------------------------------------------
+[debug] 
+[debug] [2025-04-09T23:26:09.566Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform"]
+[debug] [2025-04-09T23:26:09.566Z] > authorizing via signed-in user (trslot@gmail.com)
+[info] i  emulators: Starting emulators: functions, hosting, extensions {"metadata":{"emulator":{"name":"hub"},"message":"Starting emulators: functions, hosting, extensions"}}
+[debug] [2025-04-09T23:26:09.569Z] Checked if tokens are valid: true, expires at: 1744243048697
+[debug] [2025-04-09T23:26:09.569Z] Checked if tokens are valid: true, expires at: 1744243048697
+[debug] [2025-04-09T23:26:09.570Z] >>> [apiv2][query] GET https://cloudresourcemanager.googleapis.com/v1/projects/family-fantasy-hockey [none]
+[debug] [2025-04-09T23:26:09.727Z] <<< [apiv2][status] GET https://cloudresourcemanager.googleapis.com/v1/projects/family-fantasy-hockey 200
+[debug] [2025-04-09T23:26:09.727Z] <<< [apiv2][body] GET https://cloudresourcemanager.googleapis.com/v1/projects/family-fantasy-hockey {"projectNumber":"646164201890","projectId":"family-fantasy-hockey","lifecycleState":"ACTIVE","name":"family-fantasy-hockey","labels":{"firebase":"enabled","firebase-core":"disabled"},"createTime":"2025-02-11T21:20:24.293039Z"}
+[debug] [2025-04-09T23:26:09.735Z] [logging] Logging Emulator only supports listening on one address (127.0.0.1). Not listening on ::1
+[debug] [2025-04-09T23:26:09.735Z] [hosting] Hosting Emulator only supports listening on one address (127.0.0.1). Not listening on ::1
+[debug] [2025-04-09T23:26:09.735Z] assigned listening specs for emulators {"user":{"hub":[{"address":"127.0.0.1","family":"IPv4","port":4400},{"address":"::1","family":"IPv6","port":4400}],"ui":[{"address":"127.0.0.1","family":"IPv4","port":4000},{"address":"::1","family":"IPv6","port":4000}],"logging":[{"address":"127.0.0.1","family":"IPv4","port":4500}],"hosting":[{"address":"127.0.0.1","family":"IPv4","port":5000}]},"metadata":{"message":"assigned listening specs for emulators"}}
+[debug] [2025-04-09T23:26:09.739Z] [hub] writing locator at C:\Users\Tim\AppData\Local\Temp\hub-family-fantasy-hockey.json
+[debug] [2025-04-09T23:26:09.744Z] [Extensions] Started Extensions emulator, this is a noop.
+[debug] [2025-04-09T23:26:09.748Z] [functions] Functions Emulator only supports listening on one address (127.0.0.1). Not listening on ::1
+[debug] [2025-04-09T23:26:09.748Z] [eventarc] Eventarc Emulator only supports listening on one address (127.0.0.1). Not listening on ::1
+[debug] [2025-04-09T23:26:09.748Z] [tasks] Cloud Tasks Emulator only supports listening on one address (127.0.0.1). Not listening on ::1
+[debug] [2025-04-09T23:26:09.748Z] late-assigned ports for functions and eventarc emulators {"user":{"hub":[{"address":"127.0.0.1","family":"IPv4","port":4400},{"address":"::1","family":"IPv6","port":4400}],"ui":[{"address":"127.0.0.1","family":"IPv4","port":4000},{"address":"::1","family":"IPv6","port":4000}],"logging":[{"address":"127.0.0.1","family":"IPv4","port":4500}],"hosting":[{"address":"127.0.0.1","family":"IPv4","port":5000}],"functions":[{"address":"127.0.0.1","family":"IPv4","port":5001}],"eventarc":[{"address":"127.0.0.1","family":"IPv4","port":9299}],"tasks":[{"address":"127.0.0.1","family":"IPv4","port":9499}]},"metadata":{"message":"late-assigned ports for functions and eventarc emulators"}}
+[warn] !  functions: The following emulators are not running, calls to these services from the Functions emulator will affect production: apphosting, auth, firestore, database, pubsub, storage, dataconnect {"metadata":{"emulator":{"name":"functions"},"message":"The following emulators are not running, calls to these services from the Functions emulator will affect production: \u001b[1mapphosting, auth, firestore, database, pubsub, storage, dataconnect\u001b[22m"}}
+[debug] [2025-04-09T23:26:09.781Z] defaultcredentials: writing to file C:\Users\Tim\AppData\Roaming\firebase\trslot_gmail_com_application_default_credentials.json
+[debug] [2025-04-09T23:26:09.782Z] Setting GAC to C:\Users\Tim\AppData\Roaming\firebase\trslot_gmail_com_application_default_credentials.json {"metadata":{"emulator":{"name":"functions"},"message":"Setting GAC to C:\\Users\\Tim\\AppData\\Roaming\\firebase\\trslot_gmail_com_application_default_credentials.json"}}
+[debug] [2025-04-09T23:26:09.782Z] Checked if tokens are valid: true, expires at: 1744243048697
+[debug] [2025-04-09T23:26:09.782Z] Checked if tokens are valid: true, expires at: 1744243048697
+[debug] [2025-04-09T23:26:09.782Z] >>> [apiv2][query] GET https://firebase.googleapis.com/v1beta1/projects/family-fantasy-hockey/adminSdkConfig [none]
+[debug] [2025-04-09T23:26:09.971Z] <<< [apiv2][status] GET https://firebase.googleapis.com/v1beta1/projects/family-fantasy-hockey/adminSdkConfig 200
+[debug] [2025-04-09T23:26:09.971Z] <<< [apiv2][body] GET https://firebase.googleapis.com/v1beta1/projects/family-fantasy-hockey/adminSdkConfig {"projectId":"family-fantasy-hockey","storageBucket":"family-fantasy-hockey.firebasestorage.app"}
+[debug] [2025-04-09T23:26:09.983Z] Checked if tokens are valid: true, expires at: 1744243048697
+[debug] [2025-04-09T23:26:09.983Z] Checked if tokens are valid: true, expires at: 1744243048697
+[debug] [2025-04-09T23:26:09.985Z] >>> [apiv2][query] GET https://firebasehosting.googleapis.com/v1beta1/projects/family-fantasy-hockey/sites 
+[debug] [2025-04-09T23:26:10.286Z] <<< [apiv2][status] GET https://firebasehosting.googleapis.com/v1beta1/projects/family-fantasy-hockey/sites 200
+[debug] [2025-04-09T23:26:10.286Z] <<< [apiv2][body] GET https://firebasehosting.googleapis.com/v1beta1/projects/family-fantasy-hockey/sites {"sites":[{"name":"projects/family-fantasy-hockey/sites/family-fantasy-hockey","defaultUrl":"https://family-fantasy-hockey.web.app","appId":"1:646164201890:web:ccaf1942844a7d2423f2fb","type":"DEFAULT_SITE"}]}
+[debug] [2025-04-09T23:26:10.286Z] Checked if tokens are valid: true, expires at: 1744243048697
+[debug] [2025-04-09T23:26:10.286Z] Checked if tokens are valid: true, expires at: 1744243048697
+[debug] [2025-04-09T23:26:10.286Z] >>> [apiv2][query] GET https://firebase.googleapis.com/v1beta1/projects/family-fantasy-hockey/webApps/1:646164201890:web:ccaf1942844a7d2423f2fb/config [none]
+[debug] [2025-04-09T23:26:10.472Z] <<< [apiv2][status] GET https://firebase.googleapis.com/v1beta1/projects/family-fantasy-hockey/webApps/1:646164201890:web:ccaf1942844a7d2423f2fb/config 200
+[debug] [2025-04-09T23:26:10.472Z] <<< [apiv2][body] GET https://firebase.googleapis.com/v1beta1/projects/family-fantasy-hockey/webApps/1:646164201890:web:ccaf1942844a7d2423f2fb/config {"projectId":"family-fantasy-hockey","appId":"1:646164201890:web:ccaf1942844a7d2423f2fb","storageBucket":"family-fantasy-hockey.firebasestorage.app","apiKey":"AIzaSyBlk23AOSOrS3moergmUteg-rNaWbVcrF8","authDomain":"family-fantasy-hockey.firebaseapp.com","messagingSenderId":"646164201890","measurementId":"G-8R1VNMNGHJ"}
+[debug] [2025-04-09T23:26:10.477Z] Checked if tokens are valid: true, expires at: 1744243048697
+[debug] [2025-04-09T23:26:10.477Z] Checked if tokens are valid: true, expires at: 1744243048697
+[debug] [2025-04-09T23:26:10.477Z] >>> [apiv2][query] GET https://firebase.googleapis.com/v1beta1/projects/family-fantasy-hockey [none]
+[debug] [2025-04-09T23:26:10.582Z] <<< [apiv2][status] GET https://firebase.googleapis.com/v1beta1/projects/family-fantasy-hockey 200
+[debug] [2025-04-09T23:26:10.582Z] <<< [apiv2][body] GET https://firebase.googleapis.com/v1beta1/projects/family-fantasy-hockey {"projectId":"family-fantasy-hockey","projectNumber":"646164201890","displayName":"family-fantasy-hockey","name":"projects/family-fantasy-hockey","resources":{"hostingSite":"family-fantasy-hockey"},"state":"ACTIVE","etag":"1_833c2747-ea0b-4caa-a09c-6f0450dd5abc"}
+[info] i  hosting[family-fantasy-hockey]: Serving hosting files from: dist/team-fantasy-hockey-app/browser {"metadata":{"emulator":{"name":"hosting"},"message":"Serving hosting files from: \u001b[1mdist/team-fantasy-hockey-app/browser\u001b[22m"}}
+[info] +  hosting[family-fantasy-hockey]: Local server: http://127.0.0.1:5000 {"metadata":{"emulator":{"name":"hosting"},"message":"Local server: \u001b[4m\u001b[1mhttp://127.0.0.1:5000\u001b[22m\u001b[24m"}}
+[debug] [2025-04-09T23:26:10.598Z] [Extensions] Connecting Extensions emulator, this is a noop.
+[info] i  functions: Watching "D:\Tim\team-fantasy-hockey-app\functions" for Cloud Functions... {"metadata":{"emulator":{"name":"functions"},"message":"Watching \"D:\\Tim\\team-fantasy-hockey-app\\functions\" for Cloud Functions..."}}
+[debug] [2025-04-09T23:26:10.602Z] Validating nodejs source
+[warn] !  functions: package.json indicates an outdated version of firebase-functions. Please upgrade using npm install --save firebase-functions@latest in your functions directory. 
+[warn] !  functions: Please note that there will be breaking changes when you upgrade. 
+[debug] [2025-04-09T23:26:11.421Z] > [functions] package.json contents: {
+  "name": "functions",
+  "description": "Firebase Functions for Express server",
+  "main": "index.js",
+  "scripts": {
+    "build": "tsc",
+    "serve": "firebase emulators:start --only functions",
+    "deploy": "firebase deploy --only functions",
+    "lint": "eslint ."
+  },
+  "engines": {
+    "node": "18"
+  },
+  "dependencies": {
+    "express": "^4.18.2",
+    "firebase-functions": "^4.4.1",
+    "axios": "^1.6.0",
+    "querystring": "^0.2.1"
+  },
+  "devDependencies": {
+    "typescript": "^5.0.0"
+  },
+  "private": true
+}
+[debug] [2025-04-09T23:26:11.421Z] Building nodejs source
+[debug] [2025-04-09T23:26:11.421Z] Failed to find version of module node: reached end of search path D:\Tim\team-fantasy-hockey-app\functions\node_modules
+[warn] !  functions: Your requested "node" version "18" doesn't match your global version "22". Using node@22 from host. 
+[info] i  functions: You are using a version of firebase-functions SDK (4.9.0) that does not have support for the newest Firebase Extensions features. Please update firebase-functions SDK to >=5.1.0 to use them correctly 
+[debug] [2025-04-09T23:26:11.423Z] Could not find functions.yaml. Must use http discovery
+[debug] [2025-04-09T23:26:11.430Z] Found firebase-functions binary at 'D:\Tim\team-fantasy-hockey-app\functions\node_modules\.bin\firebase-functions'
+[info] Serving at port 8783
+
+[debug] [2025-04-09T23:26:11.909Z] Got response from /__/functions.yaml {"endpoints":{"app":{"platform":"gcfv1","availableMemoryMb":null,"timeoutSeconds":null,"minInstances":null,"maxInstances":null,"ingressSettings":null,"serviceAccountEmail":null,"vpc":null,"httpsTrigger":{},"entryPoint":"app"}},"specVersion":"v1alpha1","requiredAPIs":[]}
+[info] +  functions: Loaded functions definitions from source: app. {"metadata":{"emulator":{"name":"functions"},"message":"Loaded functions definitions from source: app."}}
+[info] +  functions[us-central1-app]: http function initialized (http://127.0.0.1:5001/family-fantasy-hockey/us-central1/app). {"metadata":{"emulator":{"name":"functions"},"message":"\u001b[1mhttp\u001b[22m function initialized (http://127.0.0.1:5001/family-fantasy-hockey/us-central1/app)."}}
+[debug] [2025-04-09T23:26:15.939Z] Could not find VSCode notification endpoint: FetchError: request to http://localhost:40001/vscode/notify failed, reason: . If you are not running the Firebase Data Connect VSCode extension, this is expected and not an issue.
+[info] 
+┌─────────────────────────────────────────────────────────────┐
+│ ✔  All emulators ready! It is now safe to connect your app. │
+│ i  View Emulator UI at http://127.0.0.1:4000/               │
+└─────────────────────────────────────────────────────────────┘
+
+┌────────────┬────────────────┬──────────────────────────────────┐
+│ Emulator   │ Host:Port      │ View in Emulator UI              │
+├────────────┼────────────────┼──────────────────────────────────┤
+│ Functions  │ 127.0.0.1:5001 │ http://127.0.0.1:4000/functions  │
+├────────────┼────────────────┼──────────────────────────────────┤
+│ Hosting    │ 127.0.0.1:5000 │ n/a                              │
+├────────────┼────────────────┼──────────────────────────────────┤
+│ Extensions │ 127.0.0.1:5001 │ http://127.0.0.1:4000/extensions │
+└────────────┴────────────────┴──────────────────────────────────┘
+  Emulator Hub host: 127.0.0.1 port: 4400
+  Other reserved ports: 4500
+┌─────────────────────────┬───────────────┬─────────────────────┐
+│ Extension Instance Name │ Extension Ref │ View in Emulator UI │
+└─────────────────────────┴───────────────┴─────────────────────┘
+Issues? Report them at https://github.com/firebase/firebase-tools/issues and attach the *-debug.log files.
+ 
+[debug] [2025-04-09T23:27:40.543Z] File D:\Tim\team-fantasy-hockey-app\functions\index.js changed, reloading triggers {"metadata":{"emulator":{"name":"functions"},"message":"File D:\\Tim\\team-fantasy-hockey-app\\functions\\index.js changed, reloading triggers"}}
+[debug] [2025-04-09T23:27:41.545Z] Validating nodejs source
+[warn] !  functions: package.json indicates an outdated version of firebase-functions. Please upgrade using npm install --save firebase-functions@latest in your functions directory. 
+[warn] !  functions: Please note that there will be breaking changes when you upgrade. 
+[debug] [2025-04-09T23:27:42.446Z] > [functions] package.json contents: {
+  "name": "functions",
+  "description": "Firebase Functions for Express server",
+  "main": "index.js",
+  "scripts": {
+    "build": "tsc",
+    "serve": "firebase emulators:start --only functions",
+    "deploy": "firebase deploy --only functions",
+    "lint": "eslint ."
+  },
+  "engines": {
+    "node": "18"
+  },
+  "dependencies": {
+    "express": "^4.18.2",
+    "firebase-functions": "^4.4.1",
+    "axios": "^1.6.0",
+    "querystring": "^0.2.1"
+  },
+  "devDependencies": {
+    "typescript": "^5.0.0"
+  },
+  "private": true
+}
+[debug] [2025-04-09T23:27:42.446Z] Building nodejs source
+[debug] [2025-04-09T23:27:42.446Z] Failed to find version of module node: reached end of search path D:\Tim\team-fantasy-hockey-app\functions\node_modules
+[warn] !  functions: Your requested "node" version "18" doesn't match your global version "22". Using node@22 from host. 
+[info] i  functions: You are using a version of firebase-functions SDK (4.9.0) that does not have support for the newest Firebase Extensions features. Please update firebase-functions SDK to >=5.1.0 to use them correctly 
+[debug] [2025-04-09T23:27:42.447Z] Could not find functions.yaml. Must use http discovery
+[debug] [2025-04-09T23:27:42.453Z] Found firebase-functions binary at 'D:\Tim\team-fantasy-hockey-app\functions\node_modules\.bin\firebase-functions'
+[info] Serving at port 8917
+
+[debug] [2025-04-09T23:27:43.062Z] Got response from /__/functions.yaml {"endpoints":{"app":{"platform":"gcfv1","availableMemoryMb":null,"timeoutSeconds":null,"minInstances":null,"maxInstances":null,"ingressSettings":null,"serviceAccountEmail":null,"vpc":null,"httpsTrigger":{},"entryPoint":"app"}},"specVersion":"v1alpha1","requiredAPIs":[]}
+[info] +  functions: Loaded functions definitions from source: app. {"metadata":{"emulator":{"name":"functions"},"message":"Loaded functions definitions from source: app."}}
+[debug] [2025-04-09T23:27:55.031Z] Received signal SIGHUP 1
+[info]  
+[info] i  emulators: Received SIGHUP for the first time. Starting a clean shutdown. 
+[info] i  emulators: Please wait for a clean shutdown or send the SIGHUP signal again to stop right now. 
+[info] i  emulators: Shutting down emulators. {"metadata":{"emulator":{"name":"hub"},"message":"Shutting down emulators."}}
+[info] i  ui: Stopping Emulator UI {"metadata":{"emulator":{"name":"ui"},"message":"Stopping Emulator UI"}}
+[info] i  extensions: Stopping Extensions Emulator {"metadata":{"emulator":{"name":"extensions"},"message":"Stopping Extensions Emulator"}}
+[debug] [2025-04-09T23:27:55.034Z] [Extensions] Stopping Extensions emulator, this is a noop.
+[info] i  functions: Stopping Functions Emulator {"metadata":{"emulator":{"name":"functions"},"message":"Stopping Functions Emulator"}}
+[info] i  hosting: Stopping Hosting Emulator {"metadata":{"emulator":{"name":"hosting"},"message":"Stopping Hosting Emulator"}}
+[info] i  eventarc: Stopping Eventarc Emulator {"metadata":{"emulator":{"name":"eventarc"},"message":"Stopping Eventarc Emulator"}}
+[info] i  tasks: Stopping Cloud Tasks Emulator {"metadata":{"emulator":{"name":"tasks"},"message":"Stopping Cloud Tasks Emulator"}}
+[info] i  hub: Stopping emulator hub {"metadata":{"emulator":{"name":"hub"},"message":"Stopping emulator hub"}}
+[info] i  logging: Stopping Logging Emulator {"metadata":{"emulator":{"name":"logging"},"message":"Stopping Logging Emulator"}}
+[debug] [2025-04-09T23:27:55.039Z] Could not find VSCode notification endpoint: FetchError: request to http://localhost:40001/vscode/notify failed, reason: . If you are not running the Firebase Data Connect VSCode extension, this is expected and not an issue.

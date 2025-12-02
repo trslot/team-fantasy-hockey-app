@@ -1,8 +1,10 @@
+const functions = require('firebase-functions');
 const express = require('express');
 const cors = require('cors');
 const axios = require('axios');
+const path = require('path');
 const { stringify } = require('querystring');
-const { parse } = require('path');
+
 const app = express();
 
 app.use(cors());
@@ -47,33 +49,14 @@ app.get(`/rosters`, (req, res) => {
     axios.get(url).then(response => {
         res.json(response.data)
     });
+
+// Serve Angular static files
+app.use(express.static(path.join(__dirname, '../dist/team-fantasy-hockey-app/browser')));
+
+// Fallback to index.html for Angular routing
+app.get('*', (req, res) => {
+  res.sendFile(path.join(__dirname, '../dist/team-fantasy-hockey-app/browser/index.html'));
+});
 });
 
-app.get('/seasons', (req, res) => {
-    const url = `https://api-web.nhle.com/v1/season`;
-
-    axios.get(url).then(response => {
-        res.json(response.data)
-    });
-});
-
-app.get('/standing-seasons', (req, res) => {
-    const url = `https://api-web.nhle.com/v1/standings-season`;
-
-    axios.get(url).then(response => {
-        res.json(response.data)
-    });
-});
-
-app.get(`/past-stats`, (req, res) => {
-    const date = stringify(req.query).substring(9);
-    const url = `https://api-web.nhle.com/v1/standings/${date}`
-
-    axios.get(url).then(response => {
-        res.json(response.data)
-    });
-});
-
-var server = app.listen(5000, function () {
-    console.log('Server is running..');
-});
+exports.app = functions.https.onRequest(app);

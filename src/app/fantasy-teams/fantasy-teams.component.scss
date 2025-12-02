@@ -3,13 +3,13 @@ html { font-size: 22px; }
 
 .cards {
     max-width: 1000px;
-    margin: 1% 10%;
+    margin: 1% 5%;
     display: grid;
     gap: 1rem;
 }
 
 .card {
-    height: 400px;
+    height: 600px;
     min-width: 325px;
 
     mat-card {
@@ -17,11 +17,11 @@ html { font-size: 22px; }
     }
 
     .jonah {
-        background-color: #1bfc06;
+        background-color: teal;
     }
 
     .isaiah {
-        background-color: blue;
+        background-color: #FF4500;
     }
 
     .mom {
@@ -29,13 +29,18 @@ html { font-size: 22px; }
     }
 
     .dad {
-        background-color: #e27602;
+        background-color: orange;
     }
 }
 
 .icons {
     width: 35px;
     height: 35px;
+}
+
+.record {
+    display: block;
+    text-align: center;
 }
 
 @media (min-width: 600px) {

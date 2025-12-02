@@ -13,12 +13,11 @@ import { Observable } from 'rxjs';
 import { map, startWith } from 'rxjs/operators';
 import { AsyncPipe } from '@angular/common';
 import { MatFormFieldModule } from '@angular/material/form-field';
+import { forkJoin } from 'rxjs';
 
 import { environment } from '../../environment/environment';
-import { initializeApp } from "firebase/app";
 import { getFirestore } from "firebase/firestore";
-import { collection, doc, getDoc, updateDoc } from "firebase/firestore";
-import { getDatabase, ref, child, push, update } from "firebase/database";
+import { doc, getDoc, updateDoc } from "firebase/firestore";
 
 
 @Component({
@@ -44,8 +43,7 @@ export class PlayersComponent implements OnInit {
     measurementId: environment.firebase.measurementId
   }
 
-  app = initializeApp(this.config);
-  db = getFirestore(this.app);
+  db = getFirestore();
 
   myControl = new FormControl<string | PlayerSearch>('');
   options: PlayerSearch[] = [];
@@ -53,14 +51,14 @@ export class PlayersComponent implements OnInit {
   currentSeason: number = 0;
   players: PlayerData[] = [];
   playerIds: any[] = [
-        // //Joe Veleno
-        // 8480813,
-        // //Alex Ovechkin
-        // 8471214,
-        // //Wayne Gretzky
-        // 8447400,
-        // //Connor McDavid
-        // 8478402
+    // //Joe Veleno
+    // 8480813,
+    // //Alex Ovechkin
+    // 8471214,
+    // //Wayne Gretzky
+    // 8447400,
+    // //Connor McDavid
+    // 8478402
   ];
 
   allPlayers: PlayerSearch[] = [];
@@ -112,85 +110,150 @@ export class PlayersComponent implements OnInit {
     this.playerIds[0][0].forEach((id: any) => {
       this.statsAPI.getPlayerStats(id).subscribe((stats: any) => {
         if (stats) {
-          this.players.push({
-            id: id,
-            firstName: stats.firstName.default,
-            lastName: stats.lastName.default,
-            imageUrl: stats.headshot,
-            goals: stats.careerTotals.regularSeason.goals,
-            assists: stats.careerTotals.regularSeason.assists,
-            points: stats.careerTotals.regularSeason.points
-          });
+          console.log(stats)
+          if (stats.position !== "G") {
+            this.players.push({
+              id: stats.playerId,
+              firstName: stats.firstName.default,
+              lastName: stats.lastName.default,
+              position: stats.position,
+              imageUrl: stats.headshot,
+              careerGoals: stats.careerTotals.regularSeason.goals,
+              careerAssists: stats.careerTotals.regularSeason.assists,
+              careerPoints: stats.careerTotals.regularSeason.points,
+              currentSeasonGoals: stats.seasonTotals[stats.seasonTotals.length - 1].goals,
+              currentSeasonAssists: stats.seasonTotals[stats.seasonTotals.length - 1].assists,
+              currentSeasonPoints: stats.seasonTotals[stats.seasonTotals.length - 1].points,
+              careerWins: 0,
+              careerLosses: 0,
+              careerOvertimeLosses: 0,
+              currentSeasonWins: 0,
+              currentSeasonLosses: 0,
+              currentSeasonOvertimeLosses: 0
+            });
+          } else {
+            this.players.push({
+              id: stats.playerId,
+              firstName: stats.firstName.default,
+              lastName: stats.lastName.default,
+              position: stats.position,
+              imageUrl: stats.headshot,
+              careerGoals: 0,
+              careerAssists: 0,
+              careerPoints: 0,
+              currentSeasonGoals: 0,
+              currentSeasonAssists: 0,
+              currentSeasonPoints: 0,
+              careerWins: stats.careerTotals.regularSeason.wins,
+              careerLosses: stats.careerTotals.regularSeason.losses,
+              careerOvertimeLosses: stats.careerTotals.regularSeason.otLosses,
+              currentSeasonWins: stats.seasonTotals[stats.seasonTotals.length - 1].wins,
+              currentSeasonLosses: stats.seasonTotals[stats.seasonTotals.length - 1].losses,
+              currentSeasonOvertimeLosses: stats.seasonTotals[stats.seasonTotals.length - 1].otLosses
+            });
+          }
         }
       });
     });
 
-    var players: any[] = [];
-
     this.statsAPI.getStats().subscribe((data: any) => {
       if (data) {
-        data.standings.forEach((stats: any) => {
-          this.statsAPI.getRosters(stats.teamAbbrev.default).subscribe((roster: any) => {
-            players.push(roster);
-          })
-        });
-      }
-    });
+        const rosterObservables = data.standings.map((stats: any) =>
+          this.statsAPI.getRosters(stats.teamAbbrev.default)
+        );
 
-    players.forEach(player => {
-      if (player) {
-        [...player.forwards, ...player.defensemen, ...player.goalies].forEach((playerRole: any) => {
-          this.allPlayers.push({
-            id: playerRole.id,
-            name: `${playerRole.firstName.default} ${playerRole.lastName.default}`
+        // Wait for all roster observables to complete
+        forkJoin<any[]>(rosterObservables).subscribe((rosters: any[]) => {
+          rosters.forEach((roster: any) => {
+            if (roster) {
+              [...roster.forwards, ...roster.defensemen, ...roster.goalies].forEach((playerRole: any) => {
+                this.allPlayers.push({
+                  id: playerRole.id,
+                  name: `${playerRole.firstName.default} ${playerRole.lastName.default}`
+                });
+              });
+            }
           });
+
+          this.allPlayers.sort((a, b) => {
+            const aLast = a.name.split(' ').slice(-1)[0].toLowerCase();
+            const bLast = b.name.split(' ').slice(-1)[0].toLowerCase();
+            return aLast.localeCompare(bLast);
+          });
+
+          this.options = this.allPlayers;
+
+          this.filteredOptions = this.myControl.valueChanges.pipe(
+            startWith(''),
+            map(value => {
+              const name = typeof value === 'string' ? value : value?.name;
+              return name ? this._filter(name as string) : this.options.slice();
+            }),
+          );
         });
       }
     });
-    this.allPlayers.sort((a, b) => {
-      const aLast = a.name.split(' ').slice(-1)[0].toLowerCase();
-      const bLast = b.name.split(' ').slice(-1)[0].toLowerCase();
-      return aLast.localeCompare(bLast);
-    });
-
-    this.options = this.allPlayers;
-
-    this.filteredOptions = this.myControl.valueChanges.pipe(
-      startWith(''),
-      map(value => {
-        const name = typeof value === 'string' ? value : value?.name;
-        return name ? this._filter(name as string) : this.options.slice();
-      }),
-    );
   }
 
   addPlayer(id: PlayerSearch) {
     this.playerIds[0][0].push(id.id);
     this.setPlayers();
-  
+
     // Get player stats immediately and update UI
     this.statsAPI.getPlayerStats(id.id).subscribe((stats: any) => {
       if (stats) {
-        this.players.push({
-          id: id.id,
-          firstName: stats.firstName.default,
-          lastName: stats.lastName.default,
-          imageUrl: stats.headshot,
-          goals: stats.careerTotals.regularSeason.goals,
-          assists: stats.careerTotals.regularSeason.assists,
-          points: stats.careerTotals.regularSeason.points
-        });
+        if (stats.position !== "G") {
+          this.players.push({
+            id: id.id,
+            firstName: stats.firstName.default,
+            lastName: stats.lastName.default,
+            position: stats.position,
+            imageUrl: stats.headshot,
+            careerGoals: stats.careerTotals.regularSeason.goals,
+            careerAssists: stats.careerTotals.regularSeason.assists,
+            careerPoints: stats.careerTotals.regularSeason.points,
+            currentSeasonGoals: stats.seasonTotals[stats.seasonTotals.length - 1].goals,
+            currentSeasonAssists: stats.seasonTotals[stats.seasonTotals.length - 1].assists,
+            currentSeasonPoints: stats.seasonTotals[stats.seasonTotals.length - 1].points,
+            careerWins: 0,
+            careerLosses: 0,
+            careerOvertimeLosses: 0,
+            currentSeasonWins: 0,
+            currentSeasonLosses: 0,
+            currentSeasonOvertimeLosses: 0
+          });
+        } else {
+          this.players.push({
+            id: id.id,
+            firstName: stats.firstName.default,
+            lastName: stats.lastName.default,
+            position: stats.position,
+            imageUrl: stats.headshot,
+            careerGoals: 0,
+            careerAssists: 0,
+            careerPoints: 0,
+            currentSeasonGoals: 0,
+            currentSeasonAssists: 0,
+            currentSeasonPoints: 0,
+            careerWins: stats.careerTotals.regularSeason.wins,
+            careerLosses: stats.careerTotals.regularSeason.losses,
+            careerOvertimeLosses: stats.careerTotals.regularSeason.otLosses,
+            currentSeasonWins: stats.seasonTotals[stats.seasonTotals.length - 1].wins,
+            currentSeasonLosses: stats.seasonTotals[stats.seasonTotals.length - 1].losses,
+            currentSeasonOvertimeLosses: stats.seasonTotals[stats.seasonTotals.length - 1].otLosses
+          });
+        }
       }
     });
   }
-  
+
   removePlayer(playerId: number) {
     const index = this.playerIds[0][0].findIndex((id: number) => id === playerId);
-  
+
     if (index !== -1) {
       this.playerIds[0][0].splice(index, 1);
       this.setPlayers();
-  
+
       // Also remove from displayed players
       const playerIndex = this.players.findIndex(player => player.id === playerId);
       if (playerIndex !== -1) {
