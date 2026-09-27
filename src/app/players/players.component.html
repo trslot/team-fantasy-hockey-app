@@ -6,75 +6,88 @@
 <div>
     <form class="example-form">
         <mat-form-field class="example-full-width">
-          <mat-label>Players</mat-label>
-          <input type="text" matInput [formControl]="myControl" [matAutocomplete]="auto">
-          <mat-autocomplete #auto="matAutocomplete" [displayWith]="displayFn" (optionSelected)='addPlayer($event.option.value)'>
-            @for (option of filteredOptions | async; track option) {
-              <mat-option [value]="option">{{option.name}}</mat-option>
-            }
-          </mat-autocomplete>
+            <mat-label>Players</mat-label>
+            <input type="text" matInput [formControl]="myControl" [matAutocomplete]="auto">
+            <mat-autocomplete #auto="matAutocomplete" [displayWith]="displayFn"
+                (optionSelected)='addPlayer($event.option.value)'>
+                @for (option of filteredOptions | async; track option) {
+                <mat-option [value]="option">{{option.name}}</mat-option>
+                }
+            </mat-autocomplete>
         </mat-form-field>
-      </form>
+    </form>
 </div>
 
 <div class="cards">
     @for (player of players; track $index) {
-        <div class="card">
-            <mat-card appearance="outlined">
-                <mat-card-header>
-                    <mat-card-title>{{player.firstName}} {{player.lastName}}</mat-card-title>
-                </mat-card-header>
-                <img mat-card-image class="image" src="{{player.imageUrl}}" alt="headshot of player">
-                <div>
+    <div class="card">
+        <mat-card appearance="outlined" class="centered-title-card">
+            <mat-card-header>
+                <mat-card-title>{{player.firstName}} {{player.lastName}}</mat-card-title>
+            </mat-card-header>
+            <img mat-card-image class="image" src="{{player.imageUrl}}" alt="headshot of player">
+            <div>
+                <mat-label class="label">Current Season Stats</mat-label>
                 @if (player.position !== "G") {
                 <mat-card-content>
-                    Current Season Goals: {{player.currentSeasonGoals}}
+                    Games Played: {{player.currentSeasonGamesPlayed}}
                 </mat-card-content>
                 <mat-card-content>
-                    Current Season Assists: {{player.currentSeasonAssists}}
+                    Goals: {{player.currentSeasonGoals}}
                 </mat-card-content>
                 <mat-card-content>
-                    Current Season Points: {{player.currentSeasonPoints}}
+                    Assists: {{player.currentSeasonAssists}}
                 </mat-card-content>
+                <mat-card-content>
+                    Points: {{player.currentSeasonPoints}}
+                </mat-card-content>
+
                 } @else {
                 <mat-card-content>
-                    Current Season Wins: {{player.currentSeasonWins}}
+                    Games Played: {{player.currentSeasonGoalieGamesPlayed}}
                 </mat-card-content>
                 <mat-card-content>
-                    Current Season Losses: {{player.currentSeasonLosses}}
+                    Wins: {{player.currentSeasonWins}}
                 </mat-card-content>
                 <mat-card-content>
-                    Current Season OT Losses: {{player.currentSeasonOvertimeLosses}}
+                    Losses: {{player.currentSeasonLosses}}
                 </mat-card-content>
-                }
+                <mat-card-content>
+                    OT Losses: {{player.currentSeasonOvertimeLosses}}
+                </mat-card-content>
 
+                }
             </div>
             <div>
+                <mat-label class="label">Career Stats</mat-label>
+                <mat-card-content>
+                    Games: {{player.careerGames}}
+                </mat-card-content>
                 @if (player.position !== "G") {
                 <mat-card-content>
-                    Career Goals: {{player.careerGoals}}
+                    Goals: {{player.careerGoals}}
                 </mat-card-content>
                 <mat-card-content>
-                    Career Assists: {{player.careerAssists}}
+                    Assists: {{player.careerAssists}}
                 </mat-card-content>
                 <mat-card-content>
-                    Career Points: {{player.careerPoints}}
+                    Points: {{player.careerPoints}}
                 </mat-card-content>
                 } @else {
                 <mat-card-content>
-                    Career Wins: {{player.careerWins}}
+                    Wins: {{player.careerWins}}
                 </mat-card-content>
                 <mat-card-content>
-                    Career Losses: {{player.careerLosses}}
+                    Losses: {{player.careerLosses}}
                 </mat-card-content>
                 <mat-card-content>
-                    Career OT Losses: {{player.careerOvertimeLosses}}
+                    OT Losses: {{player.careerOvertimeLosses}}
                 </mat-card-content>
+
                 }
             </div>
-                <button mat-button (click)="removePlayer(player.id)">Remove player</button>
-            </mat-card>
-        </div>
+            <button mat-button (click)="removePlayer(player.id)">Remove player</button>
+        </mat-card>
+    </div>
     }
 </div>
-

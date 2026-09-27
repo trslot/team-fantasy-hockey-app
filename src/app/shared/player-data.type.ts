@@ -7,6 +7,7 @@ export interface PlayerData {
     careerGoals: number;
     careerAssists: number;
     careerPoints: number;
+    careerGames: number;
     careerWins: number;
     careerLosses: number;
     careerOvertimeLosses: number;
@@ -16,4 +17,6 @@ export interface PlayerData {
     currentSeasonWins: number;
     currentSeasonLosses: number;
     currentSeasonOvertimeLosses: number;
+    currentSeasonGamesPlayed: number;
+    currentSeasonGoalieGamesPlayed: number;
 }

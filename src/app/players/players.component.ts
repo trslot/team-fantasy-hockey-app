@@ -110,7 +110,37 @@ export class PlayersComponent implements OnInit {
     this.playerIds[0][0].forEach((id: any) => {
       this.statsAPI.getPlayerStats(id).subscribe((stats: any) => {
         if (stats) {
-          console.log(stats)
+          const currentSeason = Math.max(
+            ...stats.seasonTotals.map((s: any) => s.season)
+          );
+          const seasonStats = stats.seasonTotals.filter(
+            (s: any) => s.season === currentSeason
+          );
+          const combinedSeasonStats = stats.seasonTotals
+            .filter((s: any) => s.season === currentSeason)
+            .reduce(
+              (acc: any, s: any) => {
+                acc.goals += s.goals || 0;
+                acc.assists += s.assists || 0;
+                acc.points += s.points || 0;
+                acc.gamesPlayed += s.gamesPlayed || 0;
+
+                acc.wins += s.wins || 0;
+                acc.losses += s.losses || 0;
+                acc.otLosses += s.otLosses || 0;
+
+                return acc;
+              },
+              {
+                goals: 0,
+                assists: 0,
+                points: 0,
+                gamesPlayed: 0,
+                wins: 0,
+                losses: 0,
+                otLosses: 0
+              }
+            );
           if (stats.position !== "G") {
             this.players.push({
               id: stats.playerId,
@@ -118,18 +148,25 @@ export class PlayersComponent implements OnInit {
               lastName: stats.lastName.default,
               position: stats.position,
               imageUrl: stats.headshot,
+
               careerGoals: stats.careerTotals.regularSeason.goals,
               careerAssists: stats.careerTotals.regularSeason.assists,
               careerPoints: stats.careerTotals.regularSeason.points,
-              currentSeasonGoals: stats.seasonTotals[stats.seasonTotals.length - 1].goals,
-              currentSeasonAssists: stats.seasonTotals[stats.seasonTotals.length - 1].assists,
-              currentSeasonPoints: stats.seasonTotals[stats.seasonTotals.length - 1].points,
+              careerGames: stats.careerTotals.regularSeason.gamesPlayed,
+
+              currentSeasonGoals: combinedSeasonStats.goals,
+              currentSeasonAssists: combinedSeasonStats.assists,
+              currentSeasonPoints: combinedSeasonStats.points,
+              currentSeasonGamesPlayed: combinedSeasonStats.gamesPlayed,
+
               careerWins: 0,
               careerLosses: 0,
               careerOvertimeLosses: 0,
+
               currentSeasonWins: 0,
               currentSeasonLosses: 0,
-              currentSeasonOvertimeLosses: 0
+              currentSeasonOvertimeLosses: 0,
+              currentSeasonGoalieGamesPlayed: 0
             });
           } else {
             this.players.push({
@@ -138,18 +175,25 @@ export class PlayersComponent implements OnInit {
               lastName: stats.lastName.default,
               position: stats.position,
               imageUrl: stats.headshot,
+
               careerGoals: 0,
               careerAssists: 0,
               careerPoints: 0,
+              careerGames: stats.careerTotals.regularSeason.gamesPlayed,
+
               currentSeasonGoals: 0,
               currentSeasonAssists: 0,
               currentSeasonPoints: 0,
+              currentSeasonGamesPlayed: 0,
+
               careerWins: stats.careerTotals.regularSeason.wins,
               careerLosses: stats.careerTotals.regularSeason.losses,
               careerOvertimeLosses: stats.careerTotals.regularSeason.otLosses,
-              currentSeasonWins: stats.seasonTotals[stats.seasonTotals.length - 1].wins,
-              currentSeasonLosses: stats.seasonTotals[stats.seasonTotals.length - 1].losses,
-              currentSeasonOvertimeLosses: stats.seasonTotals[stats.seasonTotals.length - 1].otLosses
+
+              currentSeasonWins: combinedSeasonStats.wins,
+              currentSeasonLosses: combinedSeasonStats.losses,
+              currentSeasonOvertimeLosses: combinedSeasonStats.otLosses,
+              currentSeasonGoalieGamesPlayed: combinedSeasonStats.gamesPlayed
             });
           }
         }
@@ -202,45 +246,89 @@ export class PlayersComponent implements OnInit {
     // Get player stats immediately and update UI
     this.statsAPI.getPlayerStats(id.id).subscribe((stats: any) => {
       if (stats) {
+        const currentSeason = Math.max(
+          ...stats.seasonTotals.map((s: any) => s.season)
+        );
+        const seasonStats = stats.seasonTotals.filter(
+          (s: any) => s.season === currentSeason
+        );
+        const combinedSeasonStats = stats.seasonTotals
+          .filter((s: any) => s.season === currentSeason)
+          .reduce(
+            (acc: any, s: any) => {
+              acc.goals += s.goals || 0;
+              acc.assists += s.assists || 0;
+              acc.points += s.points || 0;
+              acc.gamesPlayed += s.gamesPlayed || 0;
+
+              acc.wins += s.wins || 0;
+              acc.losses += s.losses || 0;
+              acc.otLosses += s.otLosses || 0;
+
+              return acc;
+            },
+            {
+                goals: 0,
+                assists: 0,
+                points: 0,
+                gamesPlayed: 0,
+                wins: 0,
+                losses: 0,
+                otLosses: 0
+            }
+          );
         if (stats.position !== "G") {
           this.players.push({
-            id: id.id,
+            id: stats.playerId,
             firstName: stats.firstName.default,
             lastName: stats.lastName.default,
             position: stats.position,
             imageUrl: stats.headshot,
+
             careerGoals: stats.careerTotals.regularSeason.goals,
             careerAssists: stats.careerTotals.regularSeason.assists,
             careerPoints: stats.careerTotals.regularSeason.points,
-            currentSeasonGoals: stats.seasonTotals[stats.seasonTotals.length - 1].goals,
-            currentSeasonAssists: stats.seasonTotals[stats.seasonTotals.length - 1].assists,
-            currentSeasonPoints: stats.seasonTotals[stats.seasonTotals.length - 1].points,
+            careerGames: stats.careerTotals.regularSeason.gamesPlayed,
+
+            currentSeasonGoals: combinedSeasonStats.goals,
+            currentSeasonAssists: combinedSeasonStats.assists,
+            currentSeasonPoints: combinedSeasonStats.points,
+            currentSeasonGamesPlayed: combinedSeasonStats.gamesPlayed,
+
             careerWins: 0,
             careerLosses: 0,
             careerOvertimeLosses: 0,
             currentSeasonWins: 0,
             currentSeasonLosses: 0,
-            currentSeasonOvertimeLosses: 0
+            currentSeasonOvertimeLosses: 0,
+            currentSeasonGoalieGamesPlayed: 0
           });
         } else {
           this.players.push({
-            id: id.id,
+            id: stats.playerId,
             firstName: stats.firstName.default,
             lastName: stats.lastName.default,
             position: stats.position,
             imageUrl: stats.headshot,
+
             careerGoals: 0,
             careerAssists: 0,
             careerPoints: 0,
+            careerGames: stats.careerTotals.regularSeason.gamesPlayed,
+
             currentSeasonGoals: 0,
             currentSeasonAssists: 0,
             currentSeasonPoints: 0,
+            currentSeasonGamesPlayed: 0,
+
             careerWins: stats.careerTotals.regularSeason.wins,
             careerLosses: stats.careerTotals.regularSeason.losses,
             careerOvertimeLosses: stats.careerTotals.regularSeason.otLosses,
-            currentSeasonWins: stats.seasonTotals[stats.seasonTotals.length - 1].wins,
-            currentSeasonLosses: stats.seasonTotals[stats.seasonTotals.length - 1].losses,
-            currentSeasonOvertimeLosses: stats.seasonTotals[stats.seasonTotals.length - 1].otLosses
+
+            currentSeasonWins: combinedSeasonStats.wins,
+            currentSeasonLosses: combinedSeasonStats.losses,
+            currentSeasonOvertimeLosses: combinedSeasonStats.otLosses,
+            currentSeasonGoalieGamesPlayed: combinedSeasonStats.gamesPlayed
           });
         }
       }

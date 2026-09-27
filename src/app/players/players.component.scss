@@ -1,5 +1,11 @@
-.goalAlert {
-    justify-items: center;
+.label {
+  display: block;
+  font-weight: bold;
+  margin-bottom: 5px;
+}
+
+.mat-mdc-card-header {
+  justify-content: center;
 }
 
 .cards {
@@ -11,7 +17,6 @@
 
 .card {
     mat-card {
-        align-items: center;
         padding: 10px;
         min-width: 300px;
         min-height: 100px;
