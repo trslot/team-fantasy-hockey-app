@@ -72,7 +72,7 @@ export class FantasyTeamsComponent implements OnInit {
     dad: ''
   };
 
-  private _yearSelected = '2025';
+  private _yearSelected = '2026';
   get yearSelected() {
     return this._yearSelected;
   }
