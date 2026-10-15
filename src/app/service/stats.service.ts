@@ -13,71 +13,132 @@ export class StatsService {
   constructor(private http: HttpClient,) { }
 
   getStats() {
-    return this.http.get(`http://localhost:5000/stats`).pipe(
-      timeout(10000),
+    return this.http.get(`http://100.92.58.111:5000/stats`).pipe(
+      timeout(3000),
       catchError(err => {
-        console.error('Stats API error:', err);
-        return of(null);
+        console.warn('Primary Stats API failed. Trying localhost...', err);
+
+        return this.http.get(`http://localhost:5000/stats`).pipe(
+          timeout(3000),
+          catchError(localErr => {
+            console.error('Localhost Stats API also failed:', localErr);
+            return of(null);
+          })
+        );
       })
     );
   }
 
   getGames() {
-    return this.http.get(`http://localhost:5000/schedule`).pipe(
-      timeout(10000),
+    return this.http.get(`http://100.92.58.111:5000/schedule`).pipe(
+      timeout(3000),
       catchError(err => {
-        console.error('Games API error:', err);
-        return of(null);
+        console.warn('Games API failed. Trying localhost...', err);
+
+        return this.http.get(`http://localhost:5000/schedule`).pipe(
+          timeout(3000),
+          catchError(localErr => {
+            console.error('Localhost Games API error:', localErr);
+            return of(null);
+          })
+        );
       })
     );
   }
 
-  getPlayerStats(playerID: number) {
-    return this.http.get(`http://localhost:5000/players`, { params: { playerID } }).pipe(
-      timeout(10000),
+  getPlayerStats(playerId: number) {
+    return this.http.get(`http://100.92.58.111:5000/players`, {
+      params: { playerId }
+    }).pipe(
+      timeout(3000),
       catchError(err => {
-        console.error('Player Stats API error:', err);
-        return of(null);
+        console.warn('Player Stats API failed. Trying localhost...', err);
+
+        return this.http.get(`http://localhost:5000/players`, {
+          params: { playerId }
+        }).pipe(
+          timeout(3000),
+          catchError(localErr => {
+            console.error('Localhost Player Stats API error:', localErr);
+            return of(null);
+          })
+        );
       })
     );
   }
 
-  getRosters(teamID: string) {
-    return this.http.get(`http://localhost:5000/rosters`, { params: { teamID } }).pipe(
-      timeout(10000),
+  getRosters(teamId: string) {
+    return this.http.get(`http://100.92.58.111:5000/rosters`, {
+      params: { teamId }
+    }).pipe(
+      timeout(3000),
       catchError(err => {
-        console.error('Rosters API error:', err);
-        return of(null);
+        console.warn('Rosters API failed. Trying localhost...', err);
+
+        return this.http.get(`http://localhost:5000/rosters`, {
+          params: { teamId }
+        }).pipe(
+          timeout(3000),
+          catchError(localErr => {
+            console.error('Localhost Rosters API error:', localErr);
+            return of(null);
+          })
+        );
       })
     );
   }
 
   getSeason() {
-    return this.http.get(`http://localhost:5000/seasons`).pipe(
-      timeout(10000),
+    return this.http.get(`http://100.92.58.111:5000/seasons`).pipe(
+      timeout(3000),
       catchError(err => {
-        console.error('Seasons API error:', err);
-        return of(null);
+        console.warn('Seasons API failed. Trying localhost...', err);
+
+        return this.http.get(`http://localhost:5000/seasons`).pipe(
+          timeout(3000),
+          catchError(localErr => {
+            console.error('Localhost Seasons API error:', localErr);
+            return of(null);
+          })
+        );
       })
     );
   }
 
   getStandingSeason() {
-    return this.http.get(`http://localhost:5000/standing-seasons`).pipe(
-      timeout(10000),
+    return this.http.get(`http://100.92.58.111:5000/standing-seasons`).pipe(
+      timeout(3000),
       catchError(err => {
-        console.error('Seasons API error:', err);
-        return of(null);
+        console.warn('Standing Seasons API failed. Trying localhost...', err);
+
+        return this.http.get(`http://localhost:5000/standing-seasons`).pipe(
+          timeout(3000),
+          catchError(localErr => {
+            console.error('Localhost Standing Seasons API error:', localErr);
+            return of(null);
+          })
+        );
       })
     );
   }
 
-  getPastStats(seasonId: number) {
-    return this.http.get(`http://localhost:5000/past-stats`, { params: {seasonId} }).pipe(
-      timeout(10000),
+  getPastStats(date: number) {
+    return this.http.get(`http://100.92.58.111:5000/past-stats`, {
+      params: { date }
+    }).pipe(
+      timeout(3000),
       catchError(err => {
-        console.error('Seasons API error:', err);
-        return of(null);
+        console.warn('Past Stats API failed. Trying localhost...', err);
+
+        return this.http.get(`http://localhost:5000/past-stats`, {
+          params: { date }
+        }).pipe(
+          timeout(3000),
+          catchError(localErr => {
+            console.error('Localhost Past Stats API error:', localErr);
+            return of(null);
+          })
+        );
       })
     );
   }

@@ -42,7 +42,11 @@ export class FantasyTeamsComponent implements OnInit {
 
   db = getFirestore();
 
-  years: Years[] = [];
+  years: Years[] = [
+    { year: '2026', display: '2026 - 2027' },
+    { year: '2025', display: '2025 - 2026' },
+    { year: '2024', display: '2024 - 2025' }
+  ];
 
   teams: ITeam[] = [];
 
@@ -163,30 +167,30 @@ export class FantasyTeamsComponent implements OnInit {
   }
 
   sortIntoTeams(stats: any) {
-    const teamIndex = this.teams.findIndex(team => team.nhlTeams.includes(stats.teamAbbrev.default));
-
-    if (teamIndex !== -1) {
-      const teamData: INHLTeam = {
-        teamName: stats.teamCommonName.default,
-        points: stats.wins,
-        logo: stats.teamLogo,
-        placeName: stats.placeName.default,
-        record: `${stats.wins}-${stats.losses}-${stats.otLosses}`
-      };
-
-      const teams = ['jonah', 'isaiah', 'mom', 'dad'];
-      const points = ['jonahPoints', 'isaiahPoints', 'momPoints', 'dadPoints'];
-
-      const targetTeam = teams[teamIndex];
-      const targetPoints = points[teamIndex];
-
-      this[targetTeam].push(teamData);
-      this[targetPoints] += stats.wins;
-      this[targetTeam].sort((a: any, b: any) => b.points - a.points);
-    }
-
-    this.setScores();
-  }
+   const teamIndex = this.teams.findIndex(team => team.nhlTeams.includes(stats.teamAbbrev.default));
+   
+   if (teamIndex !== -1) {
+     const teamData: INHLTeam = {
+       teamName: stats.teamCommonName.default,
+       points: stats.wins,
+       logo: stats.teamLogo,
+       placeName: stats.placeName.default,
+       record: `${stats.wins}-${stats.losses}-${stats.otLosses}`
+     };
+     
+     const teams = ['jonah', 'isaiah', 'mom', 'dad'];
+     const points = ['jonahPoints', 'isaiahPoints', 'momPoints', 'dadPoints'];
+     
+     const targetTeam = teams[teamIndex];
+     const targetPoints = points[teamIndex];
+     
+     this[targetTeam].push(teamData);
+     this[targetPoints] += stats.wins;
+     this[targetTeam].sort((a: any, b: any) => b.points - a.points);
+   }
+   
+   this.setScores();
+ }
 
   sortByPlace() {
     if (this.sortByPlaceBool === false) {

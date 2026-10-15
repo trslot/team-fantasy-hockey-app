@@ -1,0 +1,122 @@
+.draft-results {
+    width: 100%;
+    margin-top: 20px;
+    background: white;
+    padding: 0 20px 20px;
+    box-sizing: border-box;
+
+    h3 {
+        margin: 0 0 20px 0;
+        font-size: 1.5rem;
+        color: #333;
+    }
+}
+
+.draft-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 20px;
+    width: 100%;
+}
+
+.draft-card {
+    background: white;
+    border: 1px solid #e0e0e0;
+    border-radius: 12px;
+    padding: 20px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+    box-sizing: border-box;
+    min-width: 0;
+}
+
+.draft-card-header {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.pick-number {
+    display: none;
+}
+
+.player-name {
+    display: block;
+    font-size: 1.35rem;
+    font-weight: 500;
+}
+
+/* Teams */
+
+.teams-list {
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+    padding-bottom: 25px;
+}
+
+.team-row {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.team-info {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    width: 100%;
+}
+
+.team-abbreviation {
+    font-size: 0.85rem;
+    font-weight: bold;
+    color: #777;
+    min-width: 35px;
+}
+
+.team-name {
+    font-size: 1rem;
+    color: #222;
+    text-align: center;
+}
+
+.team-record {
+    font-size: 0.9rem;
+    color: #888;
+    margin-top: 3px;
+}
+
+.previous-year-points-wrapper {
+    text-align: center;
+    margin-top: 16px; // Optional: adds nice spacing from the list above
+}
+
+.previous-year-points {
+    font-size: 0.85rem;
+    font-weight: bold;
+    color: #777;
+    display: inline-block;
+}
+
+
+/* Responsive */
+
+@media (max-width: 1100px) {
+    .draft-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (max-width: 650px) {
+    .draft-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .draft-results {
+        padding: 0 10px 20px;
+    }
+
+    .draft-card {
+        padding: 15px;
+    }
+}

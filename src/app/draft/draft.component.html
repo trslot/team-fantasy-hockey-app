@@ -1,0 +1,49 @@
+<div>
+    <mat-form-field>
+        <mat-label>Year</mat-label>
+        <mat-select [(ngModel)]="yearSelected">
+            @for (year of years; track year.year) {
+            <mat-option [value]="year.year">{{ year.display }}</mat-option>
+            }
+        </mat-select>
+    </mat-form-field>
+</div>
+
+@if (draftOrder.length > 0) {
+<div class="draft-results">
+    <h3>Draft Order</h3>
+    <div class="draft-grid">
+        @for (pick of draftOrder; track pick.draftOrder) {
+        <div class="draft-card">
+            <div class="draft-card-header">
+                <span class="pick-number">
+                    Pick {{ pick.draftOrder }}
+                </span>
+
+                <span class="player-name">
+                    {{ pick.playerName }}
+                </span>
+            </div>
+
+            <div class="teams-list">
+                @for (team of pick.teams; track team) {
+                <div class="team-row">
+                    <div class="team-info">
+                        <span class="team-abbreviation">
+                            {{ ($index * draftOrder.length) + pick.draftOrder }} - {{ team }}
+                        </span>
+                    </div>
+                </div>
+                }
+            </div>
+            <div class="previous-year-points-wrapper">
+                <span class="previous-year-points">
+                    Previous year points: {{pick.previousSeasonPoints}}
+                </span>
+            </div>
+
+        </div>
+        }
+    </div>
+</div>
+}

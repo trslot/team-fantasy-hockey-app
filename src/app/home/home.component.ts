@@ -3,6 +3,7 @@ import { FantasyTeamsComponent } from '../fantasy-teams/fantasy-teams.component'
 import { GamesComponent } from '../games/games.component';
 import { PlayersComponent } from '../players/players.component';
 import { TeamsComponent } from '../teams/teams.component';
+import { DraftComponent } from '../draft/draft.component';
 import { MatTabsModule } from '@angular/material/tabs';
 import { Router } from '@angular/router';
 import { getAuth, signOut } from 'firebase/auth';
@@ -11,7 +12,7 @@ import { MatButtonModule } from '@angular/material/button';
 @Component({
   selector: 'app-home',
   standalone: true,
-  imports: [FantasyTeamsComponent, GamesComponent, PlayersComponent, TeamsComponent, MatTabsModule, MatButtonModule ],
+  imports: [FantasyTeamsComponent, GamesComponent, PlayersComponent, TeamsComponent, DraftComponent, MatTabsModule, MatButtonModule ],
   templateUrl: './home.component.html',
   styleUrl: './home.component.scss'
 })

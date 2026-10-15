@@ -2,9 +2,9 @@
     <mat-form-field>
         <mat-label>Year</mat-label>
         <mat-select [(ngModel)]="yearSelected">
-            <mat-option value="2026">2026 - 2027</mat-option>
-            <mat-option value="2025">2025 - 2026</mat-option>
-            <mat-option value="2024">2024 - 2025</mat-option>
+            @for (year of years; track year.year) {
+            <mat-option [value]="year.year">{{ year.display }}</mat-option>
+            }
         </mat-select>
     </mat-form-field>
 </div>
